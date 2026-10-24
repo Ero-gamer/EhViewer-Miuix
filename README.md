@@ -13,11 +13,8 @@
   日本語
   </a>
 </p>
-
 <h1 align="center">
-  <img src="../images/launcher_icon.svg" width="160" alt="EhViewer MIUIX">
-  <br>EhViewer MIUIX<br>
-</h1>
+  <img src="docs/images/launcher_icon.svg" width="160" alt="EhViewer MIUIX">
 
 <p align="center">
   <a href="https://github.com/137458/EhViewer-Miuix/releases"><img src="https://img.shields.io/github/v/release/137458/EhViewer-Miuix" alt="Release"></a>
