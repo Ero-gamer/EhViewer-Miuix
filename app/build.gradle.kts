@@ -14,7 +14,7 @@ plugins {
     alias(libs.plugins.baselineprofile)
 }
 
-val supportedAbis = arrayOf("arm64-v8a")
+val supportedAbis = arrayOf("armeabi-v7a")
 
 android {
     splits {
@@ -23,9 +23,9 @@ android {
             reset()
             if (isRelease) {
                 include(*supportedAbis)
-                isUniversalApk = true
+                isUniversalApk = false
             } else {
-                include("arm64-v8a", "x86_64")
+                include(*supportedAbis)
             }
         }
     }
@@ -149,7 +149,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles("proguard-rules.pro")
-            signingConfig = signConfig
+            signingConfig = null
         }
         debug {
             applicationIdSuffix = ".debug"
@@ -279,7 +279,7 @@ aboutLibraries {
 }
 
 // libehviewer.so 缺失时尽早失败：无 -PbuildNative 且 jniLibs 未预置原生库时，
-// 构建可编译通过但 System.loadLibrary 运行即崩。x86_64 split 一直无原生库，不在校验内。
+// 构建可编译通过但 System.loadLibrary 运行即崩。当前默认目标为 armeabi-v7a，CI 使用 -PskipNativeCheck 仅验证编译。
 if (!project.hasProperty("buildNative") && !project.hasProperty("skipNativeCheck")) {
     val nativeLibPaths = supportedAbis.map { abi ->
         projectDir.resolve("src/main/jniLibs/$abi/libehviewer.so").absolutePath
