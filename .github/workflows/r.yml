@@ -41,7 +41,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          yes | "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --licenses
+
+          # Accept Android SDK licenses without failing on the expected
+          # broken-pipe condition when the SDK exits early after accepting them.
+          set +o pipefail
+          yes 2>/dev/null | "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          set -o pipefail
+
           "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --install \
             "platforms;android-${ANDROID_API}" \
             "build-tools;${ANDROID_BUILD_TOOLS}" \
