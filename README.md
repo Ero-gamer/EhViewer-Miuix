@@ -1,9 +1,9 @@
 <p align="right">
-  <strong>简体中文</strong>
-  <span> | </span>
-  <a href="/docs/README/en.md">
-  English
+  <a href="/README.md">
+  简体中文
   </a>
+  <span> | </span>
+  <strong>English</strong>
   <span> | </span>
   <a href="/docs/README/zh-tw.md">
   正體中文
@@ -15,7 +15,7 @@
 </p>
 
 <h1 align="center">
-  <img src="docs/images/launcher_icon.svg" width="160" alt="EhViewer MIUIX">
+  <img src="../images/launcher_icon.svg" width="160" alt="EhViewer MIUIX">
   <br>EhViewer MIUIX<br>
 </h1>
 
@@ -30,139 +30,160 @@
 
 <div align="center">
   <h3>
-    <a href="#项目定位">项目定位</a>
+    <a href="#overview">Overview</a>
     <span> | </span>
-    <a href="#核心特性">核心特性</a>
+    <a href="#features">Features</a>
     <span> | </span>
-    <a href="#下载与安装">下载安装</a>
+    <a href="#download--installation">Download</a>
     <span> | </span>
-    <a href="#系统要求">系统要求</a>
+    <a href="#system-requirements">Requirements</a>
     <span> | </span>
-    <a href="#常见问题解答-faq">常见问题</a>
+    <a href="#faq">FAQ</a>
     <span> | </span>
-    <a href="#历史渊源与致谢">致谢名单</a>
+    <a href="#credits--heritage">Credits</a>
     <span> | </span>
-    <a href="#许可证">许可证</a>
+    <a href="#license">License</a>
   </h3>
 </div>
 
 ---
 
-## 重要声明与防伪警示
+## Important Notice & Anti-Fraud Advisory
 
 > [!IMPORTANT]
-> **官方唯一发布渠道**：
-> 本应用为纯粹的技术交流与兴趣开源项目，**有且仅在 GitHub Releases 页面发布更新**。
-> 互联网上所有自称“EhViewer 官网”、兜售 VIP 会员、付费购买应用、或在第三方下载站上架的所谓“破解版 / 去广告版”均属虚假欺诈行为，可能存在恶意后门注入与账号盗取风险。请广大用户认准官方开源仓库，切勿在非官方渠道下载任何安装包。
+> **Official Distribution Channel**:
+> This project is a free, non-commercial open-source project. **Official releases are distributed solely via GitHub Releases**.
+> Any websites claiming to be the "official EhViewer website", charging subscription fees, selling VIP memberships, or offering repackaged APKs with unauthorized modifications are fraudulent and potentially malicious. Always verify the repository URL and release signatures.
 
 ---
 
-## 项目定位
+## Overview
 
-**EhViewer MIUIX** 致力于为 Xiaomi HyperOS / MIUI 生态及现代 Android 平台提供极致视觉表现与丝滑交互体验的高性能 EhViewer 客户端。
+**EhViewer MIUIX** is a high-performance EhViewer client reimagined for the Xiaomi HyperOS / MIUI ecosystem and modern Android devices.
 
-本项目以 Kotlin Multiplatform 与 Jetpack Compose 为架构基础，深度融合 `top.yukonga.miuix.kmp` 组件生态与底层物理着色器渲染管线，重构了全应用视觉语言与交互组件，呈现纯粹的 HyperOS 设计美学。
-
----
-
-## 核心特性
-
-- **MIUIX 设计体系全面重构**：全量接入原生 MIUIX 设计规范，深度重构顶栏、卡片容器、分组设置项、弹窗对话框与底部抽屉面板，与 HyperOS 系统风格完美融为一体。
-- **液态玻璃悬浮底栏 (Floating Bottom Bar)**：
-  - **SDF 物理透镜折射**：基于距离场方程计算物理透镜屈光与边缘折射率。
-  - **色散彩虹光晕**：模拟真实光学色散（Chromatic Dispersion）与高光反射边缘。
-  - **双重背景实时采样**：多图层 backdrop 实时采样与高斯模糊合成。
-  - **物理阻尼手感**：内置微交互回弹力学模型，支持阻尼滑动切换与重力感应高光倾斜。
-- **沉浸式渐进模糊顶栏 (BlurredBar)**：
-  - 采用 Xiaomi HyperOS 标准渐进式纹理模糊算法，状态栏满额模糊向下自然衰减至像素级清晰，杜绝生硬切割线条。
-  - 协同滚动驱动大标题与小标题平滑转换，滚动位移自适应淡入淡出。
-- **平滑超椭圆曲率 (Squircle Shape)**：
-  - 全局卡片、图片缩略图与控件统一采用平滑曲率超椭圆几何算法，消除传统圆角的折角生硬感。
-- **响应式大屏与折叠屏适配**：
-  - 针对平板、折叠屏大屏设备提供自适应响应式布局。
-  - 在横屏与宽屏场景下，底栏自动流转切换至左侧垂直导航栏（NavigationRail），画廊与列表自适应切换为多列流式排版。
-- **硬件着色器兼容层 (RuntimeShaderCompat)**：
-  - 在 Android 13+ (API 33+) 自动启用硬件级 AGSL 着色器执行物理折射与复杂模糊。
-  - 在低版本系统环境自动平滑降级至高性能原生备用管线，兼顾前沿视觉冲击与极宽的设备兼容性。
-- **完整的画廊与阅读体验**：
-  - 支持多线程异步预加载与平滑缩放。
-  - 包含垂直滚动、从左到右、从右到左、条漫模式以及双页阅读等多种模式。
-  - 支持高级标签多维搜索、分类筛选、以图搜图与快速历史归档。
-- **稳定健全的下载与导出系统**：
-  - 支持多任务并发下载、断点续传、下载任务智能重试、自定义存储目录与 ZIP / CBZ 归档导出。
+Powered by Kotlin Multiplatform and Jetpack Compose, the application integrates `top.yukonga.miuix.kmp` and a custom physical shader rendering pipeline to deliver an authentic HyperOS visual aesthetic and fluid micro-interactions.
 
 ---
 
-## 下载与安装
+## Features
 
-请前往 [GitHub Releases](https://github.com/137458/EhViewer-Miuix/releases) 页面下载最新构建安装包：
+- **MIUIX Design System**: Complete overhaul incorporating native MIUIX design specifications, including top app bars, card containers, grouped preference settings, window dialogs, and bottom sheets.
+- **Liquid Glass Floating Bottom Bar**:
+  - **SDF Lens Refraction**: Physics-based refraction and index calculation using signed distance fields.
+  - **Chromatic Dispersion**: Realistic optical color dispersion and specular edge reflections.
+  - **Dual Backdrop Sampling**: Multi-layer backdrop blur and real-time texture compositing.
+  - **Damped Drag Physics**: Dynamic physics spring model with damped drag gestures and device tilt reflections.
+- **Progressive Blur Top Bar (BlurredBar)**:
+  - Xiaomi HyperOS-compliant progressive texture blur, blending smoothly from full blur in the status bar down to pixel-sharp content.
+  - Coordinated scroll expansion and collapse between large and small title headers.
+- **Squircle Superellipse Curvature**:
+  - Continuous curvature geometry on cards, thumbnails, and interactive surfaces for seamless, modern aesthetics.
+- **Adaptive Layout for Tablets and Foldables**:
+  - Responsive screen size adaptation.
+  - Seamlessly transforms from the floating bottom bar to a vertical NavigationRail in landscape or large-screen modes, with responsive multi-column gallery grids.
+- **Hardware Shader Compatibility (RuntimeShaderCompat)**:
+  - Utilizes hardware AGSL shaders on Android 13+ (API 33+) for physics refraction and blur.
+  - Seamlessly falls back to optimized native graphics pipelines on earlier Android releases.
+- **Rich Gallery & Reader Experience**:
+  - Multi-threaded asynchronous preloading with smooth pan and zoom.
+  - Supports vertical scrolling, left-to-right, right-to-left, webtoon continuous scrolling, and dual-page viewing modes.
+  - Comprehensive tag searching, category filtering, image reverse search, and search history.
+- **Robust Download & Archive Management**:
+  - Multi-task parallel downloading, automatic retry logic, custom storage paths, and ZIP / CBZ archive export.
+- **Windows Desktop App (Kotlin Multiplatform shared core)**:
+  - Shares the same data layer (Room / DataStore / Cookie / networking) and parsing core (list, detail, page, MPV pToken and sign-in parsers live in the shared layer) with the mobile app.
+  - Single-window page navigation: all pages (library with history / favorites / online tabs, gallery detail, reader and settings) live in one native window as a page stack (Esc / Ctrl+W goes back one level, Ctrl+Q quits the app); the window title follows the top page, position and size are remembered across sessions, and a single-instance lock prevents concurrent launches from corrupting data.
+  - Online browsing & search: online gallery list, keyword remote search with bidirectional cursor pagination; proxy via settings or environment variables; clicking a tag on a detail page drives the library search and returns to the library automatically; the detail pane includes a horizontally scrolling preview strip (V1 direct links and V2 sprite-cell clipping) and a comments section.
+  - Gallery detail: official gdata metadata hydration, favorite toggle sync, fullscreen cover preview and comment display (uploader first, collapsible, clickable links).
+  - Reader: extracts all page links from the detail page and shows real images fullscreen; ←/→ and PageUp/PageDown/Space paging (flips with RTL reading direction), Home/End first/last page, mouse-wheel paging, pinch zoom (1x-5x) plus Ctrl+=/-/0 keyboard zoom with percentage badge, arrow-key panning while zoomed, jump-to-page, F5 reload current page, image context menu (copy URL / open in browser / save to Downloads), F11 fullscreen, tap-to-retry on failure and next-page prefetch.
+  - Keyboard & tray: Ctrl+O quick open (URL / GID+Token), Ctrl+R/F5 refresh, Ctrl+Q quit, F11 fullscreen, F1 shortcut guide (with reader section); tray icon with close-to-tray protection.
+  - Data safety: history and favorite deletions offer one-click undo in the notification, clearing all history requires confirmation, session-restore window limit is configurable, and cookies persist with DPAPI encryption.
+  - System: About dialog (version and releases page) and update check on startup.
 
-| 产物文件 | 适用系统 | 架构类型 | 说明与选择建议 |
+---
+
+## Download & Installation
+
+Download the latest distribution package from [GitHub Releases](https://github.com/137458/EhViewer-Miuix/releases) page:
+
+| Artifact File | OS Target | Architecture | Notes & Guidance |
 |:---|:---|:---|:---|
-| `EhViewer-*-default-arm64-v8a.apk` | Android 8.0+ (API 26+) | 64 位 ARM | **主流机型推荐**。包名后缀 `.miuix`，原生优化无冗余兼容垫片 |
-| `EhViewer-*-default-universal.apk` | Android 8.0+ (API 26+) | 通用架构 | 通用兜底包，当前工程下与 arm64-v8a 二进制及体积完全一致 |
-| `EhViewer-*-marshmallow-arm64-v8a.apk` | Android 6.0 ~ 7.1 (API 23+) | 64 位 ARM | **老旧机型兼容版**。包名后缀 `.m`，内建脱糖支持与向后兼容层 |
-| `EhViewer-*-marshmallow-universal.apk` | Android 6.0 ~ 7.1 (API 23+) | 通用架构 | 老旧系统通用兜底包 |
-| `EhViewer-*-mapping.txt` | 全平台通用 | 符号表 | **非安装包**。R8 混淆映射表，仅供开发者排查崩溃堆栈，用户无需下载 |
+| `EhViewer-*-default-arm64-v8a.apk` | Android 8.0+ (API 26+) | 64-bit ARM | **Recommended for modern devices**. Package suffix `.miuix`, streamlined without legacy compat layers |
+| `EhViewer-*-default-universal.apk` | Android 8.0+ (API 26+) | Universal | Universal fallback package, binary-identical to arm64-v8a in this project |
+| `EhViewer-*-marshmallow-arm64-v8a.apk` | Android 6.0 ~ 7.1 (API 23+) | 64-bit ARM | **Legacy fallback build**. Package suffix `.m`, bundles desugaring and backward compat support |
+| `EhViewer-*-marshmallow-universal.apk` | Android 6.0 ~ 7.1 (API 23+) | Universal | Legacy universal fallback package |
+| `EhViewer-*-mapping.txt` | Universal | Symbols | **Not an APK**. R8 ProGuard de-obfuscation mapping table for developers to analyze crash stacks |
 
-### 安装与配置建议
+### Windows Desktop (from source)
 
-1. 下载对应变体的 `.apk` 安装文件并在设备上完成安装。
-2. **后台下载保活建议（HyperOS / MIUI 设备）**：
-   - 前往系统「设置」-「应用设置」-「应用管理」-「EhViewer」。
-   - 将「省电策略」从「智能限制」修改为「无限制」，并开启「自启动」权限，避免系统在锁屏后休眠网络导致批量下载中断。
-3. **视觉效果建议**：
-   - 建议在 Android 13 及以上系统使用，即可开启完整的实时物理透镜折射与渐进式模糊效果。
+No prebuilt desktop artifact is published yet; build and run from source with JDK 21+:
 
----
+```bash
+./gradlew :desktop:run          # run directly
+./gradlew :desktop:desktopFatJar # build a single runnable jar (~83MB)
+java -jar desktop/build/libs/desktop-all.jar
+```
 
-## 系统要求
+The fat jar bundles all dependencies and the Rust parsing library — no MinGW toolchain or jpackage needed at runtime.
 
-- **最低运行要求**：Android 8.0 (API 26) 及以上。
-- **推荐运行环境**：
-  - Android 13 (API 33) 或更高版本。
-  - Xiaomi HyperOS / MIUI 运行环境。
-  - 支持 RuntimeShader 硬件级图形渲染的现代移动芯片。
+### Installation Tips
 
----
-
-## 常见问题解答 (FAQ)
-
-### 1. 为什么提示“没有权限”、“Sad Panda”或无法正常进入画廊？
-- 请检查是否已正确登录账号。
-- 部分画廊与里站（ExHentai）资源需要账号满足相应访问权限条件。可通过应用内的 WebView 网页登录，或手动导入具备有效身份验证凭证的 Cookie。
-
-### 2. 为什么浏览时出现 HTTP 509 错误？
-- HTTP 509 代表图像配额耗尽（Image limit exceeded）。
-- 这是服务端对单个 IP 或账号在固定时间周期内的配额限制，并非客户端缺陷。可通过更换网络节点、重置网络分配、或稍作等待以恢复每日配额。
-
-### 3. 网络无法正常连接或超时如何处理？
-- 请检查系统代理或网络分流规则，确保 EhViewer 未被代理软件误拦截或设置错误。
-- 若处于特定网络限制环境中，请使用合规的网络代理接入，并在应用设置中确认内置 Hosts 与网络解析配置。
-
-### 4. 存储与下载画廊读取失败？
-- 在 Android 11 及以上系统，因系统存储沙盒限制，请进入系统设置授予应用必要的文件访问管理权限。
-- 若需修改下载保存路径，建议使用系统文件选择器指定公共 Documents 或 Download 目录。
+1. Download the appropriate `.apk` file and install it on your device.
+2. **Background Download Optimization (HyperOS / MIUI)**:
+   - Navigate to system Settings -> Apps -> Manage apps -> EhViewer.
+   - Change Battery saver to "No restrictions" and enable Autostart to ensure uninterrupted background downloads when the screen is locked.
+3. **Display Recommendation**:
+   - Android 13 or newer is recommended to enjoy full hardware AGSL lens refraction and progressive blur effects.
 
 ---
 
-## 历史渊源与致谢
+## System Requirements
 
-EhViewer 的发展凝结了开源社区众多先驱与贡献者的心血，特此向以下项目与开发者致以崇高的敬意：
+- **Minimum Version**: Android 8.0 (API 26) or higher.
+- **Recommended Environment**:
+  - Android 13 (API 33) or higher.
+  - Xiaomi HyperOS / MIUI platform.
+  - Modern mobile chipset supporting RuntimeShader hardware acceleration.
 
-### 项目先驱与分支贡献
-- [seven332 (Hippo)](https://github.com/seven332) — EhViewer 项目奠基人与最初缔造者。
-- [NekoInverter](https://github.com/NekoInverter) — 早期架构现代化维护与演进贡献。
-- [Tarsin Norbin](https://github.com/TarsinNorbin) — 现代 EhViewer 演进关键维护者。
-- [FooIbar](https://github.com/FooIbar/EhViewer) — 高性能 Compose 架构重塑与演进分支。
-- [xiaojieonly (SXJ)](https://github.com/xiaojieonly/Ehviewer_CN_SXJ) — 国内分支长线维护与丰富功能特性贡献。
+---
 
-### UI 框架与物理着色器核心项目
-- [top.yukonga.miuix.kmp](https://github.com/miuix-kotlin-multiplatform/miuix) — 卓越的 Kotlin Multiplatform MIUIX / HyperOS 设计规范组件库。
-- [Kyant0/AndroidLiquidGlass](https://github.com/Kyant0/AndroidLiquidGlass) — 令人惊艳的液态玻璃物理透镜与 AGSL 距离场着色器管线实现。
-- [InstallerX-Revived](https://github.com/rosan/InstallerX-Revived) (Rosan) — 悬浮底栏弹性微交互与阻尼力学设计参考。
+## FAQ
 
-### 开源依赖项目
+### 1. Why do I see "Permission Denied", "Sad Panda", or gallery loading failures?
+- Ensure you have successfully logged in to your account.
+- Certain galleries and ExHentai content require accounts with specific access privileges. You can log in via the built-in WebView or manually import valid authentication cookies.
+
+### 2. What causes the HTTP 509 error?
+- HTTP 509 signifies image quota exhaustion (Image limit exceeded).
+- This is a server-side limitation applied per IP address or account over a rolling window. It is not an application defect. Switch network routes, obtain a new IP address, or wait for the quota to reset.
+
+### 3. Connection timeouts or network failures?
+- Verify your network proxy and routing configurations. Ensure EhViewer is not inadvertently blocked or misrouted by your proxy client.
+- When in restricted network environments, use standard compliant network proxies and verify built-in Hosts and DNS settings in the app.
+
+### 4. Storage or download access errors?
+- On Android 11 and later, due to scoped storage requirements, please grant the app all necessary file management permissions in system settings.
+- When selecting custom download directories, use the system document picker to select public Documents or Download folders.
+
+---
+
+## Credits & Heritage
+
+The evolution of EhViewer reflects the dedication of many open-source contributors and pioneers across the years:
+
+### Project Founders & Fork Maintainers
+- [seven332 (Hippo)](https://github.com/seven332) — Founder and original creator of EhViewer.
+- [NekoInverter](https://github.com/NekoInverter) — Early modernization and architectural contributions.
+- [Tarsin Norbin](https://github.com/TarsinNorbin) — Key maintainer during modern EhViewer evolution.
+- [FooIbar](https://github.com/FooIbar/EhViewer) — High-performance Compose rewrite and evolution fork.
+- [xiaojieonly (SXJ)](https://github.com/xiaojieonly/Ehviewer_CN_SXJ) — Long-term maintenance and rich functional feature additions.
+
+### UI Frameworks & Shader Engines
+- [top.yukonga.miuix.kmp](https://github.com/miuix-kotlin-multiplatform/miuix) — Kotlin Multiplatform MIUIX / HyperOS component library.
+- [Kyant0/AndroidLiquidGlass](https://github.com/Kyant0/AndroidLiquidGlass) — Liquid glass physical lens and AGSL distance field shader pipeline.
+- [InstallerX-Revived](https://github.com/rosan/InstallerX-Revived) (Rosan) — Floating bottom bar damped drag physics and micro-interaction references.
+
+### Open-Source Dependencies
 - [AOSP](https://source.android.com/) & [AndroidX](https://developer.android.com/jetpack/androidx)
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) & [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
 - [Kotlin](https://kotlinlang.org/) & [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
@@ -175,20 +196,20 @@ EhViewer 的发展凝结了开源社区众多先驱与贡献者的心血，特�
 
 ---
 
-## 免责声明
+## Disclaimer
 
-1. **技术交流与非商业性质**：本项目属于个人非盈利性开源技术探索项目，仅供 Android Jetpack Compose 现代化组件化架构、MIUIX 界面系统规范及底层渲染动效技术的学习与研究之用，严禁将本项目及其衍生构建版本用于任何商业牟利或非法经营行为。
-2. **纯客户端定位与无内容托管**：本软件仅作为通用的网络数据解析与展示客户端工具，项目本身及其维护者不拥有、不运营任何内容服务器，亦不内置、不提供、不分发、不上载任何受版权保护的媒体资源或第三方商业数据。软件运行过程中产生的所有数据检索、内容解析与文件下载，均由终端使用者在本地设备自主配置并直连第三方公开网络服务发起。
-3. **无官方关联声明**：本项目与 E-Hentai.org、ExHentai.org 及其运营团队不存在任何官方合作、授权认可、商业推广或从属关联。
-4. **法律合规与使用者完全责任自负**：使用者在下载、安装及使用本软件时，必须严格遵守所在国家与地区的现行法律法规与公序良俗。因使用者自行检索、浏览、下载、传播违规或敏感内容，或以任何不符合当地法律法规的方式使用本软件而导致的一切法律责任、行政处罚、民事纠纷或财产损失，均由使用者本人完全自行承担。本项目开发者与开源贡献者概不承担任何直接、间接、附带、特殊、衍生或连带法律责任。
-5. **按“现状”提供与无明示/默示担保（AS-IS）**：根据 GNU General Public License v3.0 协议规定，本软件按“现状”（AS-IS）分发，不提供任何明示或暗示的担保（包括但不限于对适销性、特定用途适用性、系统兼容性及无侵权之担保）。开发者不对软件运行的持续性、稳定性、数据完整性及第三方接口的可用性作任何承诺。
-6. **知识产权与商标**：项目中涉及或引用的第三方名称、商标、服务标记及接口规范，其权利均归属于各自合法的权利人所有。
+1. **Academic Research & Non-Commercial Purpose**: This project is a non-commercial, open-source technical exploration intended solely for researching Android Jetpack Compose modern declarative architecture, MIUIX interface standards, and physical shader graphics. It must not be used for commercial profit or unauthorized monetization.
+2. **Client-Only Architecture & No Content Hosted**: This software operates strictly as a universal third-party network parser and viewing client. The project and its maintainers do not own, operate, or maintain any content servers, nor do they host, bundle, distribute, or upload copyrighted media resources or third-party commercial data. All data queries, content parsing, and downloads are initiated directly by the end-user on their local device to third-party public network endpoints.
+3. **No Official Affiliation**: This project has no official cooperation, authorization, sponsorship, or affiliation with E-Hentai.org, ExHentai.org, or their respective operating entities.
+4. **Legal Compliance & Full User Responsibility**: Users must strictly comply with applicable laws, regulations, and public policies in their respective jurisdictions. Any legal liability, administrative penalties, civil disputes, or damages arising from searching, browsing, downloading, or distributing illicit content, or utilizing this software in violation of local laws, shall be borne entirely and exclusively by the user. The project developers and open-source contributors assume no direct, indirect, incidental, special, consequential, or joint liability.
+5. **AS-IS Distribution & Disclaimer of Warranties**: In accordance with the GNU General Public License v3.0, this software is provided on an "AS-IS" basis without warranty of any kind, either express or implied, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement. Developers make no commitments regarding software continuity, stability, data integrity, or third-party API availability.
+6. **Intellectual Property & Trademarks**: All third-party names, trademarks, service marks, and interface specifications referenced in this repository belong to their respective rightful owners.
 
 ---
 
-## 许可证
+## License
 
-本项目基于 GPLv3 许可证衍生开发，遵循 **GNU General Public License v3.0 (GPLv3)** 开源许可证分发：
+This project is derivatively developed under and distributed pursuant to the **GNU General Public License v3.0 (GPLv3)**:
 
 ```text
 EhViewer MIUIX - Modern EhViewer client rebuilt with MIUIX and Jetpack Compose.
@@ -208,30 +229,30 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 ```
 
-完整协议内容请参阅仓库根目录下的 [LICENSE](LICENSE) 文件。
+For the complete license text, refer to the [LICENSE](LICENSE) file in the repository root.
 
 ---
 
-## 源码构建（面向开发者）
+## Building from Source (Developers)
 
-如果你是一名 Android 开发者并希望从源码编译构建本项目，请遵循以下流程：
+To compile the application from source, prepare your development environment as follows:
 
-### 前置环境要求
-- **JDK**：21 及以上
-- **Android SDK**：API Level 35 (Build-tools 35.0.0+)
-- **构建工具**：Gradle 9.x + Android Gradle Plugin 9.x
-- **推荐 IDE**：Android Studio Ladybug (2024.2.1) 或更高版本
+### Prerequisites
+- **JDK**: Version 21 or higher
+- **Android SDK**: API Level 35 (Build-tools 35.0.0+)
+- **Build System**: Gradle 9.x + Android Gradle Plugin 9.x
+- **Recommended IDE**: Android Studio Ladybug (2024.2.1) or later
 
-### 编译步骤
+### Build Instructions
 
 ```bash
-# 1. 克隆代码仓库
+# 1. Clone repository
 git clone https://github.com/137458/EhViewer-Miuix.git
 cd EhViewer-Miuix
 
-# 2. 编译 Default Release 生产包
+# 2. Assemble Default Release APK
 ./gradlew assembleDefaultRelease
 
-# 3. 产物输出位置位于
+# 3. Output APK location
 # app/build/outputs/apk/default/release/app-default-*-release.apk
 ```
